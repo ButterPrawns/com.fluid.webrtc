@@ -386,6 +386,26 @@ Runtime/Plugins/x86_64/*.lib.meta
 Runtime/Plugins/x86_64/*.ilk.meta
 Runtime/Plugins/x86_64/*.pdb.meta
 
+# Android/WebRTC build environment
+android-ndk-r*/
+depot_tools/
+src/
+out/
+artifacts/
+*.aar
+*.so
+*.a
+*.gz
+*.zip
+*.tar
+cmake-3.*/
+cuda-repo-*/
+cuda-ubuntu*.pin
+*.marks
+
+# WSL specific
+*.wslconfig
+
 
 
 
