@@ -11,8 +11,8 @@ export ARTIFACTS_DIR="$(pwd)/artifacts"
 
 # Set Android SDK and NDK paths - using the correct WSL path format
 export ANDROID_SDK_ROOT="/mnt/c/Users/kaika/AppData/Local/Android/Sdk"
-# Using NDK r21b as recommended in the README
-export ANDROID_NDK_ROOT="/home/kai/android-ndk-r21b"
+export ANDROID_NDK_VERSION="28.0.12916984"  # Updated to match your installed version
+export ANDROID_NDK_ROOT="$ANDROID_SDK_ROOT/ndk/$ANDROID_NDK_VERSION"
 
 # Check if Android SDK and NDK exist
 if [ ! -d "$ANDROID_SDK_ROOT" ]; then

@@ -79,7 +79,7 @@ if [ "$BUILD_ANDROID" != "true" ]; then
 fi
 
 # Set the exact sysroot path based on the user's discovery
-NDK_SYSROOT="/mnt/c/Users/kaika/AppData/Local/Android/Sdk/ndk/28.0.12916984/toolchains/llvm/prebuilt/windows-x86_64/sysroot"
+NDK_SYSROOT="$ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/sysroot"
 echo "Using NDK sysroot at: $NDK_SYSROOT"
 
 # Verify sysroot exists
@@ -107,7 +107,7 @@ mkdir -p "$OUTPUT_DIR/platforms/$PLATFORM_VERSION"
 echo "Copying Android platform JAR to output directory..."
 cp "$PLATFORM_JAR" "$OUTPUT_DIR/platforms/$PLATFORM_VERSION/android.jar"
 
-for target_cpu in "arm64" "x64"
+for target_cpu in "arm64"
 do
   echo "Building for CPU architecture: $target_cpu"
   mkdir -p "$ARTIFACTS_DIR/lib/${target_cpu}"
