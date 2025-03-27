@@ -22,8 +22,8 @@ if grep -q "Microsoft" /proc/version || grep -q "microsoft" /proc/version; then
     echo "Creating recommended .wslconfig file in Windows home directory ($WIN_HOME)"
     cat > "$WIN_HOME/.wslconfig" << EOF
 [wsl2]
-memory=8GB
-processors=4
+memory=32GB
+processors=14
 localhostForwarding=true
 EOF
     echo "Created .wslconfig file"
