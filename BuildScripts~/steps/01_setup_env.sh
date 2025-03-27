@@ -9,6 +9,34 @@ export WEBRTC_VERSION=5845
 export OUTPUT_DIR="$(pwd)/out"
 export ARTIFACTS_DIR="$(pwd)/artifacts"
 
+# Set Android SDK and NDK paths - using the correct WSL path format
+export ANDROID_SDK_ROOT="/mnt/c/Users/kaika/AppData/Local/Android/Sdk"
+export ANDROID_NDK_VERSION="28.0.12916984"  # Updated to match your installed version
+export ANDROID_NDK_ROOT="$ANDROID_SDK_ROOT/ndk/$ANDROID_NDK_VERSION"
+
+# Check if Android SDK and NDK exist
+if [ ! -d "$ANDROID_SDK_ROOT" ]; then
+  echo "ERROR: Android SDK not found at $ANDROID_SDK_ROOT"
+  echo "Please install Android Studio and SDK from https://developer.android.com/studio"
+  echo "After installation, update ANDROID_SDK_ROOT in this script."
+  echo "Required components:"
+  echo "  - Android SDK Platform (API 33 or latest)"
+  echo "  - Android SDK Platform-Tools"
+  echo "  - Android SDK Build-Tools"
+  echo "  - Android NDK (version $ANDROID_NDK_VERSION)"
+  echo "You can continue the build without Android SDK, but the Android library won't be built."
+  export BUILD_ANDROID=false
+else
+  export BUILD_ANDROID=true
+  # Check if NDK exists
+  if [ ! -d "$ANDROID_NDK_ROOT" ]; then
+    echo "WARNING: Android NDK not found at $ANDROID_NDK_ROOT"
+    echo "Please install Android NDK through Android Studio SDK Manager."
+    echo "You can continue the build without Android NDK, but the Android library won't be built."
+    export BUILD_ANDROID=false
+  fi
+fi
+
 # Create necessary directories
 mkdir -p "$OUTPUT_DIR"
 mkdir -p "$ARTIFACTS_DIR/lib"
@@ -30,4 +58,7 @@ echo "PATH: $PATH"
 echo "WEBRTC_VERSION: $WEBRTC_VERSION"
 echo "OUTPUT_DIR: $OUTPUT_DIR"
 echo "ARTIFACTS_DIR: $ARTIFACTS_DIR"
-echo "PYTHON3_BIN: $PYTHON3_BIN" 
+echo "PYTHON3_BIN: $PYTHON3_BIN"
+echo "ANDROID_SDK_ROOT: $ANDROID_SDK_ROOT"
+echo "ANDROID_NDK_ROOT: $ANDROID_NDK_ROOT"
+echo "BUILD_ANDROID: $BUILD_ANDROID" 
